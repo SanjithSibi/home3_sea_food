@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franchise Enquiry Form</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        :root {
+            --main-blue: #363d41;
+            --main-purple: #ff0000;
+            --main-grey: #ccc;
+            --sub-grey: #d9d9d9;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #000;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container .title {
+            font-size: 25px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .container .title::before {
+            content: "";
+            position: absolute;
+            height: 3.5px;
+            width: 30px;
+            background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
+            left: 0;
+            bottom: 0;
+        }
+
+        .container form .user__details {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 20px 0 12px 0;
+        }
+
+        form .user__details .input__box {
+            width: calc(50% - 20px);
+            margin-bottom: 15px;
+        }
+
+        .user__details .input__box .details {
+            font-weight: 500;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .user__details .input__box input,
+        .user__details .input__box select,
+        .user__details .input__box textarea {
+            height: 45px;
+            width: 100%;
+            outline: none;
+            border-radius: 5px;
+            border: 1px solid var(--main-grey);
+            padding-left: 15px;
+            font-size: 16px;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .user__details .input__box select {
+            height: 50px;
+            padding-right: 15px;
+        }
+
+        .user__details .input__box textarea {
+            height: auto;
+            resize: vertical;
+            padding: 10px;
+        }
+
+        .user__details .input__box input:focus,
+        .user__details .input__box select:focus,
+        .user__details .input__box textarea:focus {
+            border-color: var(--main-purple);
+        }
+
+        form .gender__details .gender__title {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        form .gender__details .category {
+            display: flex;
+            width: 80%;
+            margin: 15px 0;
+            justify-content: space-between;
+        }
+
+        .gender__details .category label {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender__details .category .dot {
+            height: 18px;
+            width: 18px;
+            background: var(--sub-grey);
+            border-radius: 50%;
+            margin: 10px;
+            border: 5px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        #dot-1:checked~.category .one,
+        #dot-2:checked~.category .two,
+        #dot-3:checked~.category .three {
+            border-color: var(--sub-grey);
+            background: var(--main-purple);
+        }
+        #dot-4:checked~.category .one,
+        #dot-5:checked~.category .two,
+        #dot-6:checked~.category .three {
+            border-color: var(--sub-grey);
+            background: var(--main-purple);
+        }
+
+        form input[type="radio"] {
+            display: none;
+        }
+
+        form .button {
+            height: 45px;
+            margin: 45px 0;
+        }
+
+        form .button input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            color: #fff;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 5px;
+            background: linear-gradient(135deg, var(--main-blue), var(--main-purple));
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        form .button input:hover {
+            background: linear-gradient(-135deg, var(--main-blue), var(--main-purple));
+        }
+
+        textarea {
+            resize: vertical;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid var(--main-grey);
+        }
+
+        .user__details textarea:focus {
+            border-color: var(--main-purple);
+        }
+
+        .category {
+            width: 100%;
+        }
+
+        .details {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .button {
+            display: flex;
+            justify-content: center;
+        }
+
+        .button input[type="submit"] {
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+
+        @media only screen and (max-width: 480px) {
+            .input__box,
+            .category,
+            textarea {
+                width: 100%;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .button input[type="submit"] {
+                width: 100%;
+            }
+
+            form .user__details .input__box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="title">Identity Details</div>
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+            <div class="user__details">
+
+                <div class="input__box">
+                    <span class="details">Image of the Applicant:</span>
+                    <input type="file" name="file" id="file" required>
+                </div>
+            </div>
+
+            <div class="user__details">
+
+                <div class="input__box">
+                    <span class="details">Name:</span>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="input__box">
+                    <span class="details">Date of Birth</span>
+                    <input type="date" name="dob" required>
+                </div>
+
+                <div class="input__box">
+                    <span class="details">Educational Qualification:</span>
+                    <select name="education" required>
+                        <option value="" disabled selected>Select one</option>
+                        <option value="12th">12th</option>
+                        <option value="ug">U.G</option>
+                        <option value="pg">P.G</option>
+                        <option value="diploma">I.T.I/Diploma</option>
+                    </select>
+                </div>
+                <div class="input__box">
+                    <span class="details">Occupation</span>
+                    <input type="text" name="occupation" required>
+                </div>
+ 
+                <div class="gender__details">
+                    <input type="radio" name="gender" id="dot-1" value="Male">
+                    <input type="radio" name="gender" id="dot-2" value="Female">
+                    <input type="radio" name="gender" id="dot-3" value="Prefer not to say">
+                    <span class="gender__title">Gender</span>
+                    <div class="category">
+                        <label for="dot-1">
+                            <span class="dot one"></span>
+                            <span>Male</span>
+                        </label>
+                        <label for="dot-2">
+                            <span class="dot two"></span>
+                            <span>Female</span>
+                        </label>
+                        <label for="dot-3">
+                            <span class="dot three"></span>
+                            <span>Others</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user__details">
+                <div class="input__box">
+                    <span class="details">PAN No.</span>
+                    <input type="text" name="pan" required>
+                </div>
+            </div>
+            <div class="user__details">
+                <div class="input__box">
+                    <span class="details">G.S.T No.</span>
+                    <input type="text" name="gst" required>
+                </div>
+            </div>
+
+            <div class="title">Address Details</div>
+            <div class="user__details">
+                <div class="input__box">
+                    <span class="details">Residence Address:</span>
+                    <textarea name="res_address" rows="4" required></textarea>
+                </div>
+                <div class="input__box">
+                    <span class="details">State:</span>
+                    <input type="text" name="res_state" required>
+                </div>
+                <div class="input__box">
+                    <span class="details">Pin Code:</span>
+                    <input type="number" name="res_pin" required>
+                </div>
+            </div>
+
+            <div class="title">Contact Details</div>
+            <div class="user__details">
+
+                <div class="input__box">
+                    <span class="details">Mobile No 1:</span>
+                    <input type="number" name="mobile1" required>
+                </div>
+                <div class="input__box">
+                    <span class="details">Mobile No 2:</span>
+                    <input type="number" name="mobile2" required>
+                </div>
+                <div class="input__box">
+                    <span class="details">Email:</span>
+                    <input type="email" name="email" required>
+                </div>
+            </div>
+            <div class="title">Current Business Experience</div>
+
+            <div class="user__details">
+
+                
+
+        
+ 
+                <div class="gender__details">
+                    <input type="radio" name="exp" id="dot-4" value="yes">
+                    <input type="radio" name="exp" id="dot-5" value="no">
+                    <div class="category">
+                        <label for="dot-4">
+                            <span class="dot one"></span>
+                            <span>Yes</span>
+                        </label>
+                        <label for="dot-5">
+                            <span class="dot two"></span>
+                            <span>No</span>
+                        </label>
+                       
+                    </div>
+                </div>
+            </div>
+                <div class="user__details">
+
+                <div class="input__box">
+                    <input type="text" name="exp1" placeholder="If yes, Mention the annual turnover">
+                </div>
+                </div>
+                <div class="user__details">
+
+                <div class="input__box">
+                    <input type="text" name="exp2" placeholder="If yes, How many years?">
+                </div>
+
+            </div>
+           
+
+                <div class="user__details">
+                    <div class="input__box">
+                        <span class="details">Preferred Location 1</span>
+                        <input type="text" name="pl1" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Preferred Location 2</span>
+                        <input type="text" name="pl2" required>
+                    </div>
+                    <div class="input__box">
+                        <span class="details">Preferred Location 3</span>
+                        <input type="text" name="pl3" required>
+                    </div>
+                </div>
+                 <div class="user__details">
+                    <div class="input__box">
+                        <span class="details">Ref. by</span>
+                        <input type="text" placeholder="Employee Code" name="ref" required>
+                    </div></div>
+
+                <div class="button">
+                    <input type="submit" name="form_submit" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
